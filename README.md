@@ -1,61 +1,160 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Gestión de Almacenes, Compras y Ventas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto está desarrollado en Laravel y sigue una arquitectura basada en capas, promoviendo la separación de responsabilidades y facilitando la escalabilidad y mantenibilidad del código.
 
-## About Laravel
+## Estructura de Carpetas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```
+├── .editorconfig
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── README.md
+├── app
+│   ├── Application
+│   │   └── UseCases
+│   ├── Console
+│   │   └── Commands
+│   ├── Domain
+│   │   ├── Models
+│   │   └── Repositories
+│   └── Infrastructure
+│       ├── Controllers
+│       ├── Persistence
+│       ├── Providers
+│       ├── Requests
+│       └── Response
+├── artisan
+├── bootstrap
+├── composer.json
+├── config
+├── database
+│   ├── factories
+│   ├── migrations
+│   └── seeders
+├── package.json
+├── phpunit.xml
+├── public
+├── resources
+│   ├── css
+│   ├── js
+│   └── views
+├── routes
+├── storage
+├── stubs
+└── vite.config.js
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Descripción de Carpetas y Archivos Clave
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### `.editorconfig`, `.env.example`, `.gitattributes`, `.gitignore`
 
-## Learning Laravel
+- **`.editorconfig`**: Define configuraciones de estilo de código para mantener la consistencia entre diferentes editores y entornos de desarrollo.
+- **`.env.example`**: Archivo de ejemplo para las variables de entorno necesarias para la configuración del proyecto.
+- **`.gitattributes`**: Especifica atributos que Git debe aplicar a los archivos del repositorio.
+- **`.gitignore`**: Lista de archivos y carpetas que Git debe ignorar.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### `app/`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Contiene el núcleo de la aplicación, organizado en subdirectorios que representan diferentes capas de la arquitectura.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **`Application/UseCases`**: Implementa la lógica de negocio específica mediante casos de uso como crear, obtener, listar, actualizar y eliminar entidades (por ejemplo, empresas).
+- **`Console/Commands`**: Define comandos personalizados de Artisan, como generadores de código o tareas programadas.
+- **`Domain/Models`**: Contiene las entidades del dominio que representan conceptos clave como productos, categorías, almacenes, usuarios, etc.
+- **`Domain/Repositories`**: Define interfaces para la abstracción de acceso a datos, permitiendo desacoplar la lógica de negocio de la implementación de persistencia.
+- **`Infrastructure/Controllers`**: Gestiona las solicitudes HTTP y coordina las respuestas apropiadas utilizando los casos de uso.
+- **`Infrastructure/Persistence`**: Implementa las interfaces de repositorio utilizando Eloquent u otros métodos de acceso a datos.
+- **`Infrastructure/Providers`**: Contiene proveedores de servicios, como `AppServiceProvider`, donde se registran los bindings de interfaces a implementaciones concretas.
+- **`Infrastructure/Requests`**: Define clases de solicitud que encapsulan y validan los datos entrantes de las solicitudes HTTP.
+- **`Infrastructure/Response`**: Contiene clases que estructuran y formatean las respuestas HTTP de manera consistente.
 
-## Laravel Sponsors
+### `artisan`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Script de consola que proporciona una interfaz de línea de comandos para ejecutar comandos de Artisan.
 
-### Premium Partners
+### `bootstrap/`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+Contiene archivos que inicializan y configuran la aplicación antes de manejar las solicitudes.
 
-## Contributing
+### `composer.json`, `composer.lock`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **`composer.json`**: Define las dependencias del proyecto y otras configuraciones de Composer.
+- **`composer.lock`**: Registra las versiones exactas de las dependencias instaladas para garantizar la consistencia entre entornos.
 
-## Code of Conduct
+### `config/`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Incluye archivos de configuración para diversos aspectos de la aplicación, como base de datos, servicios, caché, etc.
 
-## Security Vulnerabilities
+### `database/`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **`factories/`**: Contiene fábricas para generar datos de prueba para las entidades.
+- **`migrations/`**: Define las migraciones para crear y modificar las tablas de la base de datos.
+- **`seeders/`**: Incluye seeders para poblar la base de datos con datos iniciales.
 
-## License
+### `package.json`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Define las dependencias y scripts de Node.js utilizados en el proyecto, como compilación de assets.
+
+### `phpunit.xml`
+
+Archivo de configuración para las pruebas automatizadas utilizando PHPUnit.
+
+### `public/`
+
+Contiene los archivos públicos accesibles desde el navegador, como `index.php`, que es el punto de entrada de la aplicación.
+
+### `resources/`
+
+- **`css/`**: Archivos CSS sin compilar.
+- **`js/`**: Archivos JavaScript sin compilar.
+- **`views/`**: Vistas Blade que componen la interfaz de usuario.
+
+### `routes/`
+
+Define las rutas de la aplicación, separadas en archivos como `web.php` para rutas web, `api.php` para rutas de API, y `console.php` para comandos de consola.
+
+### `storage/`
+
+Almacena archivos generados por la aplicación, como logs, caché, y archivos cargados por los usuarios.
+
+### `stubs/`
+
+Contiene plantillas utilizadas por Artisan para generar código boilerplate, como controladores, modelos, migraciones, etc.
+
+### `vite.config.js`
+
+Archivo de configuración para Vite, utilizado para la compilación y procesamiento de assets frontend.
+
+## Inyección de Dependencias en `AppServiceProvider`
+
+Laravel utiliza un contenedor de servicios para gestionar la inyección de dependencias. En el archivo `AppServiceProvider`, puedes registrar bindings que definen cómo se resuelven las dependencias en tu aplicación.
+
+Ejemplo:
+
+```php
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use App\Domain\Repositories\CompanyRepositoryInterface;
+use App\Infrastructure\Persistence\EloquentCompanyRepository;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        $this->app->bind(
+            CompanyRepositoryInterface::class,
+            EloquentCompanyRepository::class
+        );
+    }
+
+    public function boot()
+    {
+        //
+    }
+}
+```
+
+En este ejemplo, cuando Laravel necesita una instancia de `CompanyRepositoryInterface`, el contenedor proporcionará una instancia de `EloquentCompanyRepository`.
+
+Para más información sobre la inyección de dependencias y el contenedor de servicios en Laravel, puedes consultar la documentación oficial: [Service Container - Laravel](https://laravel.com/docs/12.x/container).
