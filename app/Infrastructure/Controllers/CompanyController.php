@@ -2,15 +2,15 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
-use App\Application\UseCases\CreateCompanyUseCase;
-use App\Application\UseCases\ListCompaniesUseCase;
-use App\Application\UseCases\GetCompanyUseCase;
-use App\Application\UseCases\UpdateCompanyUseCase;
-use App\Application\UseCases\DeleteCompanyUseCase;
+use App\Application\UseCases\{
+    CreateCompanyUseCase,
+    ListCompaniesUseCase,
+    GetCompanyUseCase,
+    UpdateCompanyUseCase,
+    DeleteCompanyUseCase
+};
+use App\Infrastructure\Requests\{StoreCompanyRequest, UpdateCompanyRequest};
 use App\Infrastructure\Response\DistroxResponse;
-use Illuminate\Http\JsonResponse;
 
 class CompanyController extends Controller
 {
@@ -22,31 +22,31 @@ class CompanyController extends Controller
         private DeleteCompanyUseCase  $deleteCompany,
     ) {}
 
-    public function index(): JsonResponse
+    public function index()
     {
         $companies = $this->listCompanies->execute();
         return DistroxResponse::success($companies);
     }
 
-    public function store(StoreCompanyRequest $request): JsonResponse
+    public function store(StoreCompanyRequest $request)
     {
         $company = $this->createCompany->execute($request->validated());
         return DistroxResponse::success($company);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(int $id)
     {
         $company = $this->getCompany->execute($id);
         return DistroxResponse::success($company);
     }
 
-    public function update(UpdateCompanyRequest $request, int $id): JsonResponse
+    public function update(UpdateCompanyRequest $request, int $id)
     {
         $company = $this->updateCompany->execute($id, $request->validated());
         return DistroxResponse::success($company);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id)
     {
         $this->deleteCompany->execute($id);
         return DistroxResponse::success();
