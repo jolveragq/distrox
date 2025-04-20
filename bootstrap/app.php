@@ -1,6 +1,7 @@
 <?php
 
 use App\Console\Commands\MakeController;
+use App\Console\Commands\MakeModel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withCommands([
         MakeController::class,
+        MakeModel::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
         //
