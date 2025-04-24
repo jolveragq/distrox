@@ -15,7 +15,7 @@ class DistroxResponse
      * @param  Request|null  $request    Instancia de la petición para extraer params.
      * @return JsonResponse
      */
-    public static function success(mixed $data = null, ?string $message = null, ?Request $request = null): JsonResponse
+    public static function success(mixed $data = null, ?string $message = null,?string $statusCode = null, ?Request $request = null): JsonResponse
     {
         if (!$request) {
             $request = request();
@@ -33,7 +33,7 @@ class DistroxResponse
             'data'    => $data,
             'message' => $message,
             'request' => $params,
-        ], 200);
+        ], $statusCode ?? 200);
     }
 
     /**
@@ -45,7 +45,7 @@ class DistroxResponse
      * @param  Request|null  $request    Instancia de la petición para extraer params.
      * @return JsonResponse
      */
-    public static function error(string $message, mixed $data = null, int $statusCode = 400, ?Request $request = null): JsonResponse
+    public static function error(string $message, mixed $errors = null, int $statusCode = 400, ?Request $request = null): JsonResponse
     {
         $params = $request
             ? [
@@ -56,7 +56,7 @@ class DistroxResponse
 
         return response()->json([
             'status'  => 'error',
-            'data'    => $data,
+            'errors'    => $errors,
             'message' => $message,
             'request' => $params,
         ], $statusCode);

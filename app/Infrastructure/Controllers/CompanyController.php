@@ -9,8 +9,9 @@ use App\Application\UseCases\Company\{
     UpdateCompanyUseCase,
     DeleteCompanyUseCase
 };
-use App\Infrastructure\Requests\{StoreCompanyRequest, UpdateCompanyRequest};
+use App\Infrastructure\Requests\Company\{StoreCompanyRequest, UpdateCompanyRequest};
 use App\Infrastructure\Response\DistroxResponse;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -28,7 +29,7 @@ class CompanyController extends Controller
         return DistroxResponse::success($companies);
     }
 
-    public function store(StoreCompanyRequest $request)
+    public function store(Request $request)
     {
         $company = $this->createCompany->execute($request->validated());
         return DistroxResponse::success($company);

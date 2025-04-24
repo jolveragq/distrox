@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -10,13 +12,19 @@ class MakeController extends GeneratorCommand
     // Sobrescribe el nombre del comando (ya lo configuraste en --command)
     protected $name = 'make:controller';
 
+    protected $signature = 'make:controller {name} {--api : Indica si el controlador será de tipo API}';
+
     // Descripción del comando
     protected $description = 'Create a new controller in app/Infrastructure/Controllers';
 
     // La ruta del stub original (puedes publicar stubs y copiarlos aquí si quieres customizar)
     protected function getStub()
     {
-        return base_path('stubs/controller.stub');
+        $stub = $this->option('api')
+            ? base_path('stubs/controller.api.stub')
+            : base_path('stubs/controller.stub');
+
+        return $stub;
     }
 
     // Namespace por defecto

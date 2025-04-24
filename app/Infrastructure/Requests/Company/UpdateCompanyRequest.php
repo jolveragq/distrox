@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Infrastructure\Requests;
+namespace App\Infrastructure\Requests\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreCompanyRequest extends FormRequest
+class UpdateCompanyRequest extends FormRequest
 {
     /**
      * Determina si el usuario está autorizado.
@@ -16,12 +17,18 @@ class StoreCompanyRequest extends FormRequest
     }
 
     /**
-     * Reglas de validación para crear una empresa.
+     * Reglas de validación para actualizar una empresa.
      */
     public function rules(): array
     {
+        $companyId = $this->route('company');
+
         return [
-            'ruc'            => ['required', 'digits:11', 'unique:companies,ruc'],
+            'ruc'            => [
+                'required',
+                'digits:11',
+                Rule::unique('companies', 'ruc')->ignore($companyId),
+            ],
             'name'           => ['required', 'string', 'max:255'],
             'legal_name'     => ['required', 'string', 'max:255'],
             'fiscal_address' => ['required', 'string', 'max:500'],
