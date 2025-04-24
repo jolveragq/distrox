@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\UseCases\{
+use App\Application\UseCases\Company\{
     CreateCompanyUseCase,
     ListCompaniesUseCase,
     GetCompanyUseCase,

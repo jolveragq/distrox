@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\UseCases;
+namespace App\Application\UseCases\Company;
 
 use App\Domain\Repositories\CompanyRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
