@@ -1,0 +1,177 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: #f9fafb;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Contenedor principal */
+  .auth-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 550px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    background-color: white;
+  }
+
+  /* Contenedor de formularios */
+  .forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  /* Secciones de formulario */
+  .form-section {
+    width: 50%;
+    height: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Panel deslizante */
+  .sliding-cover {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: #2563eb;
+    background-image: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 3rem;
+    z-index: 10;
+  }
+
+  .auth-container.show-register .sliding-cover {
+    transform: translateX(-100%);
+  }
+
+  /* Contenido del panel deslizante */
+  .cover-content {
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .cover-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .cover-text {
+    margin-bottom: 1.25rem;
+    opacity: 0.9;
+    line-height: 1.5;
+    font-size: 0.9375rem;
+  }
+
+  .cover-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1.75rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover-image svg {
+    width: 80px;
+    height: 80px;
+    color: white;
+  }
+
+  /* Botón del panel */
+  .cover-button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1.5rem;
+  }
+
+  .cover-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 768px) {
+    .auth-container {
+      height: auto;
+      max-width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .forms-container {
+      position: relative;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .form-section {
+      width: 100%;
+      padding: 2rem 1.5rem;
+      display: none;
+    }
+
+    /* Mostrar el formulario activo */
+    .form-section.active {
+      display: block;
+    }
+
+    /* Rediseño del panel deslizante para móvil */
+    .sliding-cover {
+      position: relative;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 2rem 1.5rem;
+      transform: none !important;
+    }
+
+    .cover-image {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .cover-image svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    .cover-title {
+      font-size: 1.25rem;
+    }
+
+    .cover-text {
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .cover-button {
+      margin-top: 1rem;
+    }
+  }

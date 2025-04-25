@@ -1,0 +1,49 @@
+<div>
+    <h2 class="form-title">Iniciar sesión</h2>
+    <p class="form-subtitle">Ingrese sus credenciales para acceder a su cuenta</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <label for="email" class="input-label">Correo electrónico</label>
+      <input
+        type="email"
+        id="email"
+        class="input-field"
+        placeholder="nombre@empresa.com"
+        formControlName="email"
+      />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+        Ingrese un correo electrónico válido
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="flex-between">
+        <label for="password" class="input-label">Contraseña</label>
+        <a href="#" class="form-link">¿Olvidó su contraseña?</a>
+      </div>
+      <input
+        type="password"
+        id="password"
+        class="input-field"
+        formControlName="password"
+      />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        La contraseña es requerida
+      </div>
+    </div>
+
+    <div class="checkbox-container">
+      <input
+        type="checkbox"
+        id="remember"
+        formControlName="rememberMe"
+      >
+      <label for="remember" class="checkbox-label">Mantener sesión iniciada</label>
+    </div>
+
+    <button type="submit" class="auth-button" [disabled]="loginForm.invalid">
+      Iniciar sesión
+    </button>
+  </form>
