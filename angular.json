@@ -17,8 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "public/frontend",
-            "index": "src/index.html",
+            "outputPath": {
+                "base": "storage/app/public",
+                "browser": ""
+            },
+            "index": {
+                "input": "src/index.html",
+                "output": "index.html"
+            },
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -28,14 +34,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "assets"
+                "input": "assets",
+                "output": "assets"
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "baseHref": "/frontend/browser/"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -51,7 +57,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "sourceMap": true
             },
             "development": {
               "optimization": false,
