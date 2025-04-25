@@ -1,4 +1,4 @@
-<div class="p-4">
+<div class="p-4 flex flex-col gap-2">
      <div class="border p-4 rounded-md flex flex-col gap-4">
         <h2>Alertas</h2>
         <app-alert title="Title"  [dismissible]="true">
@@ -27,6 +27,14 @@
         <app-alert title="Title" size="sm" variant="error" [dismissible]="true">
             This is a message.
         </app-alert>
+    </div>
+
+    <div class="border p-4 rounded-md flex flex-col gap-4">
+        <h2>Badges</h2>
+        <app-badge variant="info">Info</app-badge>
+        <app-badge variant="success">Success</app-badge>
+        <app-badge variant="warning">Warning</app-badge>
+        <app-badge variant="error">Error</app-badge>
     </div>
 
 </div>
