@@ -1,12 +1,15 @@
-import { NgClass } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { NgClass } from "@angular/common";
+import { Component, input } from "@angular/core";
+
+type BadgeVariant = "info" | "success" | "warning" | "error";
 
 @Component({
-  selector: 'app-badge',
-  imports: [NgClass],
-  templateUrl: './badge.component.html',
-  styleUrl: './badge.component.scss'
+	selector: "app-badge",
+	standalone: true,
+	imports: [NgClass],
+	templateUrl: "./badge.component.html",
+	styleUrl: "./badge.component.scss",
 })
 export class BadgeComponent {
-    public variant = input('info'); // info, success, warning, error
+	public readonly variant = input<BadgeVariant>("info");
 }

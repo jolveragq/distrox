@@ -1,40 +1,171 @@
-<div class="p-4 flex flex-col gap-2">
-     <div class="border p-4 rounded-md flex flex-col gap-4">
-        <h2>Alertas</h2>
-        <app-alert title="Title"  [dismissible]="true">
-            This is a message.
-        </app-alert>
-        <app-alert title="Title" variant="success" [dismissible]="true">
-            This is a message.
-        </app-alert>
-        <app-alert title="Title" variant="warning" [dismissible]="true">
-            This is a message.
-        </app-alert>
+<div class="p-4 flex flex-col gap-6">
+    <app-card title="Alertas">
+        <div class="flex flex-col gap-4">
+            <app-alert title="Title" [dismissible]="true">
+                This is a message.
+            </app-alert>
+            <app-alert title="Title" variant="success" [dismissible]="true">
+                This is a message.
+            </app-alert>
+            <app-alert title="Title" variant="warning" [dismissible]="true">
+                This is a message.
+            </app-alert>
+            <app-alert title="Title" variant="error" [dismissible]="true">
+                This is a message.
+            </app-alert>
 
-        <app-alert title="Title" variant="error" [dismissible]="true">
-            This is a message.
-        </app-alert>
-        <app-alert title="Title" size="sm"  [dismissible]="true">
-            This is a message.
-        </app-alert>
-        <app-alert title="Title" size="sm" variant="success" [dismissible]="true">
-            This is a message.
-        </app-alert>
-        <app-alert title="Title" size="sm" variant="warning" [dismissible]="true">
-            This is a message.
-        </app-alert>
+            <app-alert title="Title" size="sm" [dismissible]="true">
+                This is a message.
+            </app-alert>
+            <app-alert
+                title="Title"
+                size="sm"
+                variant="success"
+                [dismissible]="true"
+            >
+                This is a message.
+            </app-alert>
+            <app-alert
+                title="Title"
+                size="sm"
+                variant="warning"
+                [dismissible]="true"
+            >
+                This is a message.
+            </app-alert>
+            <app-alert
+                title="Title"
+                size="sm"
+                variant="error"
+                [dismissible]="true"
+            >
+                This is a message.
+            </app-alert>
+        </div>
+    </app-card>
 
-        <app-alert title="Title" size="sm" variant="error" [dismissible]="true">
-            This is a message.
-        </app-alert>
-    </div>
+    <app-card title="Badges">
+        <div class="flex flex-wrap gap-4">
+            <app-badge variant="info">Info</app-badge>
+            <app-badge variant="success">Success</app-badge>
+            <app-badge variant="warning">Warning</app-badge>
+            <app-badge variant="error">Error</app-badge>
+        </div>
+    </app-card>
 
-    <div class="border p-4 rounded-md flex flex-col gap-4">
-        <h2>Badges</h2>
-        <app-badge variant="info">Info</app-badge>
-        <app-badge variant="success">Success</app-badge>
-        <app-badge variant="warning">Warning</app-badge>
-        <app-badge variant="error">Error</app-badge>
-    </div>
+    <app-card title="Buttons" size="sm">
+        <div class="flex flex-col gap-6">
+            <div>
+                <h3 class="text-md font-semibold mb-2">Variantes</h3>
+                <div class="flex flex-wrap gap-4">
+                    <app-button variant="primary">Primary</app-button>
+                    <app-button variant="secondary">Secondary</app-button>
+                    <app-button variant="warning">Warning</app-button>
+                    <app-button variant="danger">Danger</app-button>
+                </div>
+            </div>
 
+            <div>
+                <h3 class="text-md font-semibold mb-2">Con tamaños</h3>
+                <div class="flex flex-wrap gap-4">
+                    <app-button variant="primary" size="sm">Small</app-button>
+                    <app-button variant="primary" size="md">Medium</app-button>
+                    <app-button variant="primary" size="lg">Large</app-button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-md font-semibold mb-2">Con íconos</h3>
+                <div class="flex flex-wrap gap-4">
+                    <app-button
+                        variant="primary"
+                        icon="bx bx-user"
+                        iconPosition="start"
+                        >Save</app-button
+                    >
+                    <app-button
+                        variant="danger"
+                        icon="bx bx-user"
+                        iconPosition="end"
+                        >Delete</app-button
+                    >
+                    <app-button
+                        variant="warning"
+                        icon="bx bx-user"
+                        iconPosition="start"
+                        >Warning</app-button
+                    >
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-md font-semibold mb-2">Deshabilitados</h3>
+                <div class="flex flex-wrap gap-4">
+                    <app-button variant="primary" [disabled]="true"
+                        >Disabled</app-button
+                    >
+                    <app-button
+                        variant="danger"
+                        [disabled]="true"
+                        icon="fas fa-ban"
+                        >Disabled</app-button
+                    >
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-md font-semibold mb-2">Outlined</h3>
+                <div class="flex flex-wrap gap-4">
+                    <app-button variant="primary" [outlined]="true"
+                        >Primary Outlined</app-button
+                    >
+                    <app-button variant="secondary" [outlined]="true"
+                        >Secondary Outlined</app-button
+                    >
+                    <app-button variant="warning" [outlined]="true"
+                        >Warning Outlined</app-button
+                    >
+                    <app-button variant="danger" [outlined]="true"
+                        >Danger Outlined</app-button
+                    >
+                </div>
+                <div class="flex flex-wrap gap-4 mt-4">
+                    <app-button variant="primary" size="sm" [outlined]="true"
+                        >Primary Outlined</app-button
+                    >
+                    <app-button variant="secondary" size="sm" [outlined]="true"
+                        >Secondary Outlined</app-button
+                    >
+                    <app-button variant="warning" size="sm" [outlined]="true"
+                        >Warning Outlined</app-button
+                    >
+                    <app-button variant="danger" size="sm" [outlined]="true"
+                        >Danger Outlined</app-button
+                    >
+                </div>
+            </div>
+        </div>
+    </app-card>
+
+    <app-card title="Dropdowns">
+        <div class="flex flex-col gap-6">
+            <div class="flex gap-4">
+                <app-dropdown
+                    [trigger]="'Open Menu'"
+                    [items]="[
+                        { label: 'Option 1' },
+                        { label: 'Option 2' },
+                        { label: 'Option 3' }
+                    ]"
+                >
+                </app-dropdown>
+
+                <app-dropdown
+                    [trigger]="'More Actions'"
+                    [items]="[{ label: 'Edit' }, { label: 'Delete' }]"
+                >
+                </app-dropdown>
+            </div>
+        </div>
+    </app-card>
 </div>

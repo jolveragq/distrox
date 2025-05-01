@@ -1,0 +1,40 @@
+<div
+    class="overflow-hidden bg-white rounded-lg border border-gray-200 shadow-sm"
+    [ngClass]="{
+        'p-4': size() === 'md',
+        'p-2': size() === 'sm'
+    }"
+>
+    @if(title()){
+    <div
+        class="border-b border-gray-200 sm:px-6"
+        [ngClass]="{
+            'px-4 py-5 sm:px-6': size() === 'md',
+            'px-2 py-2 sm:px-3': size() === 'sm'
+        }"
+    >
+        <h3
+            [ngClass]="{
+                'text-lg': size() === 'md',
+                'text-sm': size() === 'sm'
+            }"
+            class="font-medium leading-6 text-gray-900"
+        >
+            {{ title() }}
+        </h3>
+    </div>
+
+    }
+
+    <div
+        class="sm:p-6"
+        [ngClass]="{
+            'px-4 py-5 sm:px-6': size() === 'md',
+            'px-2 py-2 sm:px-3': size() === 'sm'
+        }"
+    >
+        <ng-content></ng-content>
+    </div>
+
+    <ng-content select="[card-footer]"></ng-content>
+</div>

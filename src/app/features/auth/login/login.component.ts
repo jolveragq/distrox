@@ -1,30 +1,35 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import {
+	FormBuilder,
+	FormGroup,
+	Validators,
+	ReactiveFormsModule,
+} from "@angular/forms";
 
 @Component({
-  selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+	selector: "app-login",
+	imports: [ReactiveFormsModule, CommonModule],
+	templateUrl: "./login.component.html",
+	styleUrl: "./login.component.scss",
 })
 export class LoginComponent {
-    loginForm: FormGroup;
+	loginForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {
-      this.loginForm = this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        rememberMe: [false]
-      });
-    }
+	constructor(private fb: FormBuilder) {
+		this.loginForm = this.fb.group({
+			email: ["", [Validators.required, Validators.email]],
+			password: ["", Validators.required],
+			rememberMe: [false],
+		});
+	}
 
-    onSubmit(): void {
-      if (this.loginForm.valid) {
-        console.log('Login form submitted', this.loginForm.value);
-        // Aquí iría la lógica de autenticación
-      } else {
-        this.loginForm.markAllAsTouched();
-      }
-    }
+	onSubmit(): void {
+		if (this.loginForm.valid) {
+			console.log("Login form submitted", this.loginForm.value);
+			// Aquí iría la lógica de autenticación
+		} else {
+			this.loginForm.markAllAsTouched();
+		}
+	}
 }
