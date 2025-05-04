@@ -1,35 +1,55 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
 	FormBuilder,
+	FormControl,
 	FormGroup,
-	Validators,
 	ReactiveFormsModule,
+	Validators,
 } from "@angular/forms";
+
+import { HlmButtonDirective } from "@spartan-ng/ui-button-helm";
+import { HlmInputDirective } from "@spartan-ng/ui-input-helm";
+import { HlmSelectImports } from "@spartan-ng/ui-select-helm";
+import { BrnSelectImports } from "@spartan-ng/brain/select";
+import { CompanyService } from "../../company/services/company.service";
+import { AsyncPipe } from "@angular/common";
+import { map } from "rxjs";
 
 @Component({
 	selector: "app-login",
-	imports: [ReactiveFormsModule, CommonModule],
+	standalone: true,
+	imports: [
+		ReactiveFormsModule,
+		HlmButtonDirective,
+		HlmInputDirective,
+		HlmSelectImports,
+		BrnSelectImports,
+		AsyncPipe,
+	],
 	templateUrl: "./login.component.html",
-	styleUrl: "./login.component.scss",
+	providers: [CompanyService],
 })
 export class LoginComponent {
-	loginForm: FormGroup;
+	companySelected = inject(CompanyService);
 
-	constructor(private fb: FormBuilder) {
-		this.loginForm = this.fb.group({
-			email: ["", [Validators.required, Validators.email]],
-			password: ["", Validators.required],
-			rememberMe: [false],
-		});
-	}
+	submitted = signal(false);
 
-	onSubmit(): void {
-		if (this.loginForm.valid) {
-			console.log("Login form submitted", this.loginForm.value);
-			// Aquí iría la lógica de autenticación
-		} else {
-			this.loginForm.markAllAsTouched();
-		}
+	companies$$ = this.companySelected
+		.getCompanies()
+		.pipe(map((response) => response.data));
+
+	loginForm = new FormGroup({
+		company: new FormControl(null, Validators.required),
+		email: new FormControl("", [Validators.required, Validators.email]),
+		password: new FormControl("", [
+			Validators.required,
+			Validators.minLength(6),
+		]),
+	});
+
+	onSubmit() {
+		this.submitted.set(true);
+		if (this.loginForm.invalid) return;
+		console.log("Datos de login:", this.loginForm.value);
 	}
 }

@@ -21,7 +21,7 @@ class CompanyController extends Controller
         private GetCompanyUseCase     $getCompany,
         private UpdateCompanyUseCase  $updateCompany,
         private DeleteCompanyUseCase  $deleteCompany,
-    ) {}
+    ) { }
 
     public function index()
     {

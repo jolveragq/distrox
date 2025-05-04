@@ -21,6 +21,10 @@ class DistroxResponse
             $request = request();
         }
 
+        if (!$statusCode) {
+            $statusCode = $request->ajax() ? 200 : 201;
+        }
+
         $params = $request
             ? [
                 'method'     => $request->method(),
@@ -30,6 +34,7 @@ class DistroxResponse
 
         return response()->json([
             'status'  => 'success',
+            'statusCode' => $statusCode,
             'data'    => $data,
             'message' => $message,
             'request' => $params,
@@ -56,6 +61,7 @@ class DistroxResponse
 
         return response()->json([
             'status'  => 'error',
+            'statusCode' => $statusCode,
             'errors'    => $errors,
             'message' => $message,
             'request' => $params,

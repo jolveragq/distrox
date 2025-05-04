@@ -1,19 +1,16 @@
-import { Component, HostListener, OnInit } from "@angular/core";
-import { RegisterComponent } from "../register/register.component";
+import { Component, HostListener, type OnInit } from "@angular/core";
 import { LoginComponent } from "../login/login.component";
 import { CommonModule } from "@angular/common";
 
 @Component({
 	selector: "app-auth-container",
-	imports: [RegisterComponent, LoginComponent, CommonModule],
+	imports: [LoginComponent, CommonModule],
 	templateUrl: "./auth-container.component.html",
 	styleUrl: "./auth-container.component.scss",
 })
 export class AuthContainerComponent implements OnInit {
 	isRegisterActive = false;
 	isMobile = false;
-
-	constructor() {}
 
 	ngOnInit(): void {
 		this.checkScreenSize();

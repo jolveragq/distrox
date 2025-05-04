@@ -15,7 +15,7 @@
         "formatWithErrors": true
     },
     "organizeImports": {
-        "enabled": true
+        "enabled": false
     },
     "linter": {
         "enabled": true,
